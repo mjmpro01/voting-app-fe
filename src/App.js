@@ -5,13 +5,13 @@ import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  // const user = JSON.parse(localStorage.getItem('user'));
   return (
     <Router>
       <Routes>
         <Route path="/login" element={ <LoginPage/> } />
         <Route path="/signup" element={ <SignupPage/>} />
-        {/* <PrivateRoute path="/dashboard" element={ < Dashboard /> } user={user}/> */}
+        <Route path="/" element={ <Dashboard/>} />
         {/* <Navigate from="/" to="/login" /> */}
       </Routes>
     </Router>

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import authService from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 
+
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
-
+  
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -19,11 +20,15 @@ const LoginPage = () => {
   const handleLogin = async () => {
     try {
       await authService.login(email, password);
-      navigate('/');
+      window.location.href = "http://localhost:3000";
     } catch (error) {
       setErrorMessage(error.message);
     }
   };
+
+  useEffect(() => {
+    // do nothing
+  }, []);
 
   return (
     <section className="vh-100 gradient-custom">
@@ -91,7 +96,7 @@ const LoginPage = () => {
                 <div>
                   <p className="mb-0">
                     Don't have an account?{" "}
-                    <a href="#!" className="text-white-50 fw-bold">
+                    <a href="/signup" className="text-white-50 fw-bold">
                       Sign Up
                     </a>
                   </p>

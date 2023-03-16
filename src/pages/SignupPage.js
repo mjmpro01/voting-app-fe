@@ -33,9 +33,9 @@ function SignupPage() {
         setError("Password and confirm password do not match");
         return;
       }
-      const response = await authService.signup(username, password);
+      const response = await authService.signup(username, email, password);
       if (response.data.success) {
-        navigate("/");
+        navigate("/login");
       } else {
         setError(response.data.message);
       }
@@ -64,8 +64,7 @@ function SignupPage() {
                         Username
                       </label>
                       <input
-                        type="email"
-                        id="typeEmailX"
+                        id="username"
                         className="form-control form-control-lg"
                         value={username}
                         onChange={handleUsernameChange}
@@ -110,7 +109,7 @@ function SignupPage() {
                         type="password"
                         id="typePasswordX"
                         className="form-control form-control-lg"
-                        value={password}
+                        value={confirmPassword}
                         onChange={handleConfirmPasswordChange}
                       />
                       
@@ -135,9 +134,9 @@ function SignupPage() {
 
                 <div>
                   <p className="mb-0">
-                    Don't have an account?{" "}
-                    <a href="#!" className="text-white-50 fw-bold">
-                      Sign Up
+                    Turn back login{" "}
+                    <a href="/login" className="text-white-50 fw-bold">
+                      Login
                     </a>
                   </p>
                 </div>
